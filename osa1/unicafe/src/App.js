@@ -1,25 +1,66 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react'
 
-function App() {
+const App = () => {
+  // tallenna napit omaan tilaansa
+  const headtext = 'Give Feedback'
+  const statline = 'Statistics'
+  const [good, setGood] = useState(0)
+  const [neutral, setNeutral] = useState(0)
+  const [bad, setBad] = useState(0)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+    
+      <Header headtext={headtext}/>
+      
+      <button onClick={() => setGood(good + 1)}>
+        Good
+      </button>
+
+      <button onClick={() => setNeutral(neutral + 1)}>
+        Neutral
+      </button>
+
+      <button onClick={() => setBad(bad + 1)}>
+        Bad
+      </button>
+
+      <StatText statline={statline} />
+      <Display name='Good:' count={good}/>
+      <Display name='Neutral:' count={neutral}/>
+      <Display name='Bad:' count={bad}/>
+    
     </div>
-  );
+  )
 }
 
-export default App;
+
+const Header = (props) => {
+  return (
+    <div>
+      <h1>
+        {props.headtext}
+      </h1>
+    </div>
+  )
+}
+
+const StatText = (props) => {
+  return(
+    <div>
+      <h1>
+        {props.statline}
+      </h1>
+    </div>
+  )
+}
+
+const Display = (props) => {
+  return (
+    <div>
+      <h3> {props.name} {props.count}</h3>
+    </div>
+  )
+}
+
+export default App
