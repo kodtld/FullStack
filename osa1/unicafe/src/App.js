@@ -7,6 +7,7 @@ const App = () => {
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
+  
 
   return (
     <div>
@@ -26,9 +27,11 @@ const App = () => {
       </button>
 
       <StatText statline={statline} />
-      <Display name='Good:' count={good}/>
-      <Display name='Neutral:' count={neutral}/>
-      <Display name='Bad:' count={bad}/>
+      <Statistics g_count={good} n_count={neutral} b_count={bad} Statistics
+       full_count={good + neutral + bad} 
+       average_count={((good*[1])+(neutral*[0])+(bad*[-1]))/(good + bad + neutral)} 
+       positive_count={(100*good)/(good+bad+neutral)}
+       />
     
     </div>
   )
@@ -55,10 +58,17 @@ const StatText = (props) => {
   )
 }
 
-const Display = (props) => {
-  return (
+
+const Statistics = (props) => {
+  return(
     <div>
-      <h3> {props.name} {props.count}</h3>
+      <h3> Good: {props.g_count}</h3>
+      <h3> Neutral: {props.n_count}</h3>
+      <h3> Bad: {props.b_count}</h3>
+      <h3> All: {props.full_count}</h3>
+      <h3> Average: {props.average_count}</h3>
+      <h3> Positive: {props.positive_count} %</h3>
+
     </div>
   )
 }
