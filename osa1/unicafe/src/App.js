@@ -7,7 +7,9 @@ const App = () => {
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
-  
+  const full_count = bad + neutral + good
+  const average_count = ((good*[1])+(neutral*[0])+(bad*[-1]))/(full_count)
+  const positive_count = (100*good)/(full_count)
 
   return (
     <div>
@@ -28,9 +30,9 @@ const App = () => {
 
       <StatText statline={statline} />
       <Statistics g_count={good} n_count={neutral} b_count={bad} Statistics
-       full_count={good + neutral + bad} 
-       average_count={((good*[1])+(neutral*[0])+(bad*[-1]))/(good + bad + neutral)} 
-       positive_count={(100*good)/(good+bad+neutral)}
+       full_count={full_count} 
+       average_count={average_count} 
+       positive_count={positive_count}
        />
     
     </div>
@@ -60,17 +62,29 @@ const StatText = (props) => {
 
 
 const Statistics = (props) => {
-  return(
-    <div>
-      <h3> Good: {props.g_count}</h3>
-      <h3> Neutral: {props.n_count}</h3>
-      <h3> Bad: {props.b_count}</h3>
-      <h3> All: {props.full_count}</h3>
-      <h3> Average: {props.average_count}</h3>
-      <h3> Positive: {props.positive_count} %</h3>
+  if (props.full_count > 0) {
+    return(
+      <div>
+        <h3> Good: {props.g_count}</h3>
+        <h3> Neutral: {props.n_count}</h3>
+        <h3> Bad: {props.b_count}</h3>
+        <h3> All: {props.full_count}</h3>
+        <h3> Average: {props.average_count}</h3>
+        <h3> Positive: {props.positive_count} %</h3>
+  
+      </div>
+    )
+  }
 
-    </div>
-  )
+  if (props.full_count == 0) {
+    return(
+      <div>
+        <h3>No feedback given</h3>
+      </div>
+    )
+    
+  }
+
 }
 
 export default App
