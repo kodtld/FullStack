@@ -59,12 +59,26 @@ const Statistics = (props) => {
   if (props.full_count > 0) {
     return(
       <div>
-        <StatisticLine name={'Good:'} data={props.g_count}/>
-        <StatisticLine name={'Neutral:'} data={props.n_count}/>
-        <StatisticLine name={'Bad:'} data={props.b_count}/>
-        <StatisticLine name={'All:'} data={props.full_count}/>
-        <StatisticLine name={'Average:'} data={props.average_count}/>
-        <StatisticLine name={'Positive:'} data={props.positive_count +' %'}/>
+        <table>
+          <tr>
+            <td><StatisticLine name={'Good:'} data={props.g_count}/></td>
+          </tr>
+          <tr>
+            <td><StatisticLine name={'Neutral:'} data={props.n_count}/></td>
+          </tr>
+          <tr>
+            <td><StatisticLine name={'Bad:'} data={props.b_count}/></td>
+          </tr>
+          <tr>
+            <td><StatisticLine name={'All:'} data={props.full_count}/></td>
+          </tr>
+          <tr>
+            <td><StatisticLine name={'Average:'} data={props.average_count}/></td>
+          </tr>
+          <tr>
+            <td><StatisticLine name={'Positive:'} data={props.positive_count +' %'}/></td>
+          </tr>
+        </table>
       </div>
     )
   }
@@ -80,7 +94,7 @@ const Statistics = (props) => {
 const StatisticLine = (props) => {
   return(
     <div>
-      <h3>{props.name} {props.data}</h3>
+      {props.name} {props.data}
     </div>
   )
 }
